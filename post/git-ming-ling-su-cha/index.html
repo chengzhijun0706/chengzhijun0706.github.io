@@ -4,7 +4,7 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Git命令速查 | lift</title>
-<link rel="shortcut icon" href="https://chengzhijun0706.github.io//favicon.ico?v=1561021876113">
+<link rel="shortcut icon" href="https://chengzhijun0706.github.io//favicon.ico?v=1561025683159">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://chengzhijun0706.github.io//styles/main.css">
@@ -20,7 +20,7 @@
       <div class="main-content">
         <div class="site-header">
   <a href="https://chengzhijun0706.github.io/">
-  <img class="avatar" src="https://chengzhijun0706.github.io//images/avatar.png?v=1561021876113" alt="">
+  <img class="avatar" src="https://chengzhijun0706.github.io//images/avatar.png?v=1561025683159" alt="">
   </a>
   <h1 class="site-title">
     lift
@@ -141,6 +141,9 @@ Git 的配置文件为. gitconfig，它可以在用户主目录下（全局配�
 </li>
 <li>
 <h4 id="git-pull-origin-branch-name将远程库的分支与当前库的分支同步"><code>git pull origin [branch-name]</code>将远程库的分支与当前库的分支同步</h4>
+</li>
+<li>
+<h4 id="git-pull-rebase将当前的修改应用到最新的commit上变基"><code>git pull --rebase</code>将当前的修改应用到最新的commit上（变基）</h4>
 </li>
 <li>
 <h4 id="git-push-origin-branch-name-将本地项目给提交到服务器中"><code>git push origin [branch-name]</code> 将本地项目给提交到服务器中</h4>
@@ -513,7 +516,20 @@ e - 手动编辑当前的hunk
 </ul>
 </li>
 <li>
-<p><strong>镜囊妙计</strong></p>
+<p><strong>rebase</strong></p>
+<ul>
+<li>
+<h4 id="git-rebase将当前的修改应用到当前分支的最新commit上"><code>git rebase</code>将当前的修改应用到当前分支的最新commit上</h4>
+</li>
+<li>
+<h4 id="git-rebase-branch将当前分支的共同源点后的commit应用到指定分支的所有提交后面相当于分支合并"><code>git rebase [branch]</code>将当前分支的共同源点后的commit应用到指定分支的所有提交后面（相当于分支合并）</h4>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://chengzhijun0706.github.io//post-images/1561025643702.png" alt=""></p>
+<ul>
+<li><strong>镜囊妙计</strong>
 <ul>
 <li>
 <h4 id="git-reflog查看所有操作历史配合reset进行时光倒流"><code>git reflog</code>查看所有操作历史，配合reset进行时光倒流</h4>
