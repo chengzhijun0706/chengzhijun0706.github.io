@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://chengzhijun0706.github.io/</id>
     <title>lift</title>
-    <updated>2019-06-18T03:27:03.567Z</updated>
+    <updated>2019-06-20T09:10:28.410Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://chengzhijun0706.github.io/"/>
     <link rel="self" href="https://chengzhijun0706.github.io//atom.xml"/>
@@ -16,9 +16,438 @@
         <link href="https://chengzhijun0706.github.io//post/git-ming-ling-su-cha">
         </link>
         <updated>2019-06-18T03:19:28.000Z</updated>
-        <content type="html"><![CDATA[<ul>
-<li><strong>初始化仓库</strong>
-<code>git init</code></li>
+        <summary type="html"><![CDATA[<p>👏  不可不看的<strong>Git</strong>命令小全！<br>
+✍️  本文收集整理了一些日常项目使用到的各种<strong>Git</strong>的奇技淫巧</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>👏  不可不看的<strong>Git</strong>命令小全！<br>
+✍️  本文收集整理了一些日常项目使用到的各种<strong>Git</strong>的奇技淫巧</p>
+<!-- more -->
+<ul>
+<li>
+<p><strong>新建代码库</strong></p>
+<ul>
+<li>
+<h4 id="git-init在当前目录新建一个git代码库"><code>git init</code>在当前目录新建一个Git代码库</h4>
+</li>
+<li>
+<h4 id="git-init-project-name新建一个目录将其初始化为git代码库"><code>git init [project-name]</code>新建一个目录，将其初始化为Git代码库</h4>
+</li>
+<li>
+<h4 id="git-clone-url下载一个项目和它的整个代码历史"><code>git clone [url]</code>下载一个项目和它的整个代码历史</h4>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>配置</strong>
+Git 的配置文件为. gitconfig，它可以在用户主目录下（全局配置），也可以在项目目录下（项目配置）。</p>
+<ul>
+<li>
+<h4 id="git-config-list显示当前的git配置"><code>git config --list</code>显示当前的Git配置</h4>
+</li>
+<li>
+<h4 id="git-config-e-global编辑git配置文件"><code>git config -e [--global]</code>编辑Git配置文件</h4>
+</li>
+<li>
+<h4 id="git-config-global-username-name设置提交代码时的用户信息"><code>git config [--global] user.name &quot;[name]&quot;</code>设置提交代码时的用户信息</h4>
+</li>
+<li>
+<h4 id="git-config-global-useremail-email-address"><code>git config [--global] user.email &quot;[email address]&quot;</code></h4>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>同步</strong></p>
+<ul>
+<li>
+<h4 id="git-remote-add-origin-url添加远程仓库地址"><code>git remote add origin [url]</code>添加远程仓库地址</h4>
+</li>
+<li>
+<h4 id="git-remote-show-origin显示远程库origin里的资源"><code>git remote show origin</code>显示远程库origin里的资源</h4>
+</li>
+<li>
+<h4 id="git-pull本地与服务器端同步"><code>git pull</code>本地与服务器端同步</h4>
+</li>
+<li>
+<h4 id="git-pull-origin-branch-name将远程库的分支与当前库的分支同步"><code>git pull origin [branch-name]</code>将远程库的分支与当前库的分支同步</h4>
+</li>
+<li>
+<h4 id="git-push-origin-branch-name-将本地项目给提交到服务器中"><code>git push origin [branch-name]</code> 将本地项目给提交到服务器中</h4>
+</li>
+<li>
+<h4 id="git-push-u-origin-branch-name将本地分支推送到远程分支"><code>git push -u origin [branch-name]</code>将本地分支推送到远程分支</h4>
+</li>
+<li>
+<h4 id="git-push-origin-delete-branch-name删除远程分支"><code>git push origin --delete [branch-name]</code>删除远程分支</h4>
+</li>
+<li>
+<h4 id="git-push-remote-f强制推送使用本地分支内容覆盖远程分支"><code>git push [remote] -f</code>强制推送，使用本地分支内容覆盖远程分支</h4>
+</li>
+<li>
+<h4 id="git-push-remote-all推送所有分支到远程仓库"><code>git push [remote] --all</code>推送所有分支到远程仓库</h4>
+</li>
+<li>
+<h4 id="git-push-remote-tag提交指定tag"><code>git push [remote] [tag]</code>提交指定tag</h4>
+</li>
+<li>
+<h4 id="git-push-remote-tags提交所有tag"><code>git push [remote] --tags</code>提交所有tag</h4>
+</li>
+<li>
+<h4 id="git-push-origin-refstagstagname删除远程tag"><code>git push origin :refs/tags/[tagName]</code>删除远程tag</h4>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://chengzhijun0706.github.io//post-images/1560844646650.png" alt=""></p>
+<ul>
+<li>
+<p><strong>add</strong></p>
+<ul>
+<li>
+<h4 id="git-add-file1-file2-添加指定文件到暂存区"><code>git add [file1] [file2] ...</code>添加指定文件到暂存区</h4>
+</li>
+<li>
+<h4 id="git-add-添加当前目录的所有文件到暂存区"><code>git add .</code>添加当前目录的所有文件到暂存区</h4>
+</li>
+<li>
+<h4 id="git-add-p对于同一个文件的多处变化可以实现分次提交"><code>git add -p</code>对于同一个文件的多处变化，可以实现分次提交</h4>
+</li>
+</ul>
+<pre><code>y - 存储这个hunk 
+n - 不存储这个hunk 
+q - 离开，不存储这个hunk和其他hunk 
+a - 存储这个hunk和这个文件后面的hunk 
+d - 不存储这个hunk和这个文件后面的hunk 
+g - 选择一个hunk 
+/ - 通过正则查找hunk 
+j - 不确定是否存储这个hunk，看下一个不确定的hunk 
+J - 不确定是否存储这个hunk，看下一个hunk 
+k - 不确定是否存储这个hunk，看上一个不确定的hunk 
+K -不确定是否存储这个hunk，看上一个hunk 
+s - 把当前的hunk分成更小的hunks 
+e - 手动编辑当前的hunk 
+? - 输出帮助信息
+</code></pre>
+</li>
+<li>
+<p><strong>remove</strong></p>
+<ul>
+<li>
+<h4 id="git-rm-file1-file2-删除工作区文件并且将这次删除放入暂存区"><code>git rm [file1] [file2] ...</code>删除工作区文件，并且将这次删除放入暂存区</h4>
+</li>
+<li>
+<h4 id="git-rm-cached-file停止追踪指定文件但该文件会保留在工作区"><code>git rm --cached [file]</code>停止追踪指定文件，但该文件会保留在工作区</h4>
+</li>
+<li>
+<h4 id="git-mv-file-original-file-renamed改名文件并且将这个改名放入暂存区"><code>git mv [file-original] [file-renamed]</code>改名文件，并且将这个改名放入暂存区</h4>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>commit</strong></p>
+<ul>
+<li>
+<h4 id="git-commit-m-message提交暂存区到仓库区"><code>git commit -m [message]</code>提交暂存区到仓库区</h4>
+</li>
+<li>
+<h4 id="git-commit-file1-file2-m-message提交暂存区的指定文件到仓库区"><code>git commit [file1] [file2] ... -m [message]</code>提交暂存区的指定文件到仓库区</h4>
+</li>
+<li>
+<h4 id="git-commit-a提交工作区自上次commit之后的变化直接到仓库区"><code>git commit -a</code>提交工作区自上次commit之后的变化，直接到仓库区</h4>
+</li>
+<li>
+<h4 id="git-commit-v提交时显示所有diff信息"><code>git commit -v</code>提交时显示所有diff信息</h4>
+</li>
+<li>
+<h4 id="git-commit-amend-m-message追加上一次的提交或者用来改写上一次commit的提交信息"><code>git commit --amend -m [message]</code>追加上一次的提交，或者用来改写上一次commit的提交信息</h4>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>checkout</strong></p>
+<ul>
+<li>
+<h4 id="git-checkout-file撤销对指定文件的修改"><code>git checkout [file]</code>撤销对指定文件的修改</h4>
+</li>
+<li>
+<h4 id="git-checkout-commit-file恢复某个commit的指定文件到暂存区"><code>git checkout [commit] [file]</code>恢复某个commit的指定文件到暂存区</h4>
+</li>
+<li>
+<h4 id="git-checkout-撤销所有工作区的所有修改"><code>git checkout .</code>撤销所有工作区的所有修改</h4>
+</li>
+<li>
+<h4 id="git-checkout-js撤销符合正则的文件的修改"><code>git checkout &quot;*.js&quot;</code>撤销符合正则的文件的修改</h4>
+</li>
+<li>
+<h4 id="git-checkout-b-branch新建一个分支并切换到该分支"><code>git checkout -b [branch]</code>新建一个分支，并切换到该分支</h4>
+</li>
+<li>
+<h4 id="git-checkout-branch-name切换到指定分支并更新工作区"><code>git checkout [branch-name]</code>切换到指定分支，并更新工作区</h4>
+</li>
+<li>
+<h4 id="git-checkout-切换到上一个分支"><code>git checkout -</code>切换到上一个分支</h4>
+</li>
+<li>
+<h4 id="git-checkout-b-branch-tag新建一个分支指向某个tag"><code>git checkout -b [branch] [tag]</code>新建一个分支，指向某个tag</h4>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>reset</strong></p>
+<ul>
+<li>
+<h4 id="git-reset-file将暂存区的指定文件恢复到工作区"><code>git reset [file]</code>将暂存区的指定文件恢复到工作区</h4>
+</li>
+<li>
+<h4 id="git-reset-hard-file将暂存区的指定文件修改丢弃"><code>git reset --hard [file]</code>将暂存区的指定文件修改丢弃</h4>
+</li>
+<li>
+<h4 id="git-reset-soft-commit重置当前分支的指针为指定commit同时将暂存区的内容恢复到工作区"><code>git reset --soft [commit]</code>重置当前分支的指针为指定commit，同时将暂存区的内容恢复到工作区</h4>
+</li>
+<li>
+<h4 id="git-reset-hard-commit重置当前分支的指针为指定commit同时将会清空暂存区和工作区"><code>git reset --hard [commit]</code>重置当前分支的指针为指定commit，同时将会清空暂存区和工作区</h4>
+</li>
+<li>
+<h4 id="git-reset-keep-commit重置当前head为指定commit但保持暂存区和工作区不变"><code>git reset --keep [commit]</code>重置当前HEAD为指定commit，但保持暂存区和工作区不变</h4>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>revert</strong></p>
+<ul>
+<li>
+<h4 id="git-revert-commit将指定commit进行反提交就是将当前提交代码抹除同时生成一条新的commit-️注意如果revert多条commit时一定要注意多条之间的依赖关系"><code>git revert [commit]</code>将指定commit进行反提交（就是将当前提交代码抹除），同时生成一条新的commit。⚠️注意，如果revert多条commit时，一定要注意，多条之间的依赖关系</h4>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>stash</strong></p>
+<ul>
+<li>
+<h4 id="git-stash将当前的暂存区和工作区的所有内容缓存起来如果是新增的文件需要add进暂存区才能被缓存"><code>git stash</code>将当前的暂存区和工作区的所有内容缓存起来，如果是新增的文件，需要add进暂存区才能被缓存</h4>
+</li>
+<li>
+<h4 id="git-stash-list查看缓存记录列表"><code>git stash list</code>查看缓存记录列表</h4>
+</li>
+<li>
+<h4 id="git-stash-apply-commit-将最后一次缓存或指定commit恢复到暂存区和工作区但是并不会删除缓存记录"><code>git stash apply [commit]</code> 将最后一次缓存或指定commit恢复到暂存区和工作区，但是并不会删除缓存记录</h4>
+</li>
+<li>
+<h4 id="git-stash-drop-commit-将最后一条或指定commit缓存记录删除"><code>git stash drop [commit]</code> 将最后一条或指定commit缓存记录删除</h4>
+</li>
+<li>
+<h4 id="git-stash-pop-commit-将最后一次或指定commit缓存恢复到暂存区和工作区并且删除记录"><code>git stash pop [commit]</code> 将最后一次或指定commit缓存恢复到暂存区和工作区，并且删除记录</h4>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>cherry</strong></p>
+<h4 id="git-cherry-v-upstream-head-limit"><code>git cherry [-v] [&lt;upstream&gt; [&lt;head&gt; [&lt;limit&gt;]]]</code></h4>
+<h4 id="查看当前分支及远程upstream之间commits的区别给出是否applied">查看当前分支及远程upstream之间commits的区别，给出是否applied</h4>
+<h4 id="输出结果为在limit和head区间内的所有commits的sha-1列表">输出结果为在<limit>和<head>区间内的所有commits的SHA-1列表</h4>
+<h4 id="其中前缀-表示upstream中已apply">其中前缀-表示<upstream>中已apply</h4>
+<h4 id="其中前缀表示upstream中未apply">其中前缀+表示<upstream>中未apply</h4>
+</li>
+<li>
+<p><strong>cherry-pick</strong></p>
+<ul>
+<li>
+<h4 id="git-cherry-pick-commit"><code>git cherry-pick [commit]…</code></h4>
+</li>
+<li>
+<h4 id="git-cherry-pick-x-commit-表示保留原提交的作者信息进行提交"><code>git cherry-pick -x [commit]…</code> 表示保留原提交的作者信息进行提交。</h4>
+</li>
+<li>
+<h4 id="git-cherry-pick-edit-commit编辑commit-message"><code>git cherry-pick --edit [commit]…</code>编辑commit message</h4>
+</li>
+<li>
+<h4 id="git-cherry-pick-n-no-commit-commit只是在当前分支上apply这些commits的改变但是不提交到当前分支"><code>git cherry-pick -n(--no-commit) [commit]…</code>只是在当前分支上apply这些commits的改变，但是不提交到当前分支</h4>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>status</strong></p>
+<ul>
+<li>
+<h4 id="git-status显示暂存区和工作区的修改"><code>git status</code>显示暂存区和工作区的修改</h4>
+</li>
+<li>
+<h4 id="git-status-s以简短的形式输出修改信息"><code>git status -s</code>以简短的形式输出修改信息</h4>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>branch</strong></p>
+<ul>
+<li>
+<h4 id="git-branch列出所有本地分支"><code>git branch</code>列出所有本地分支</h4>
+</li>
+<li>
+<h4 id="git-branch-r列出所有远程分支"><code>git branch -r</code>列出所有远程分支</h4>
+</li>
+<li>
+<h4 id="git-branch-a列出所有本地分支和远程分支"><code>git branch -a</code>列出所有本地分支和远程分支</h4>
+</li>
+<li>
+<h4 id="git-branch-branch-name新建一个分支但依然停留在当前分支"><code>git branch [branch-name]</code>新建一个分支，但依然停留在当前分支</h4>
+</li>
+<li>
+<h4 id="git-branch-branch-commit新建一个分支指向指定commit"><code>git branch [branch] [commit]</code>新建一个分支，指向指定commit</h4>
+</li>
+<li>
+<h4 id="git-branch-track-branch-remote-branch新建一个分支与指定的远程分支建立追踪关系"><code>git branch --track [branch] [remote-branch]</code>新建一个分支，与指定的远程分支建立追踪关系</h4>
+</li>
+<li>
+<h4 id="git-branch-set-upstream-branch-remote-branch将本地分支和远程分支关联"><code>git branch --set-upstream [branch] [remote-branch]</code>将本地分支和远程分支关联</h4>
+</li>
+<li>
+<h4 id="git-merge-branch合并指定分支到当前分支"><code>git merge [branch]</code>合并指定分支到当前分支</h4>
+</li>
+<li>
+<h4 id="git-branch-d-branch-name删除分支"><code>git branch -d [branch-name]</code>删除分支</h4>
+</li>
+<li>
+<h4 id="git-branch-dr-remotebranch删除远程分支"><code>git branch -dr [remote/branch]</code>删除远程分支</h4>
+</li>
+<li>
+<h4 id="git-checkout-b-branch新建一个分支并切换到该分支-2"><code>git checkout -b [branch]</code>新建一个分支，并切换到该分支</h4>
+</li>
+<li>
+<h4 id="git-checkout-branch-name切换到指定分支并更新工作区-2"><code>git checkout [branch-name]</code>切换到指定分支，并更新工作区</h4>
+</li>
+<li>
+<h4 id="git-checkout-切换到上一个分支-2"><code>git checkout -</code>切换到上一个分支</h4>
+</li>
+<li>
+<h4 id="git-push-u-origin-branch-name将本地分支推送到远程分支-2"><code>git push -u origin [branch-name]</code>将本地分支推送到远程分支</h4>
+</li>
+<li>
+<h4 id="git-push-origin-delete-branch-name删除远程分支-2"><code>git push origin --delete [branch-name]</code>删除远程分支</h4>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>tag</strong></p>
+<ul>
+<li>
+<h4 id="git-tag列出所有tag"><code>git tag</code>列出所有tag</h4>
+</li>
+<li>
+<h4 id="git-tag-tag新建一个tag在当前commit"><code>git tag [tag]</code>新建一个tag在当前commit</h4>
+</li>
+<li>
+<h4 id="git-tag-tag-commit新建一个tag在指定commit"><code>git tag [tag] [commit]</code>新建一个tag在指定commit</h4>
+</li>
+<li>
+<h4 id="git-tag-d-tag删除本地tag"><code>git tag -d [tag]</code>删除本地tag</h4>
+</li>
+<li>
+<h4 id="git-show-tag查看tag信息"><code>git show [tag]</code>查看tag信息</h4>
+</li>
+<li>
+<h4 id="git-checkout-b-branch-tag新建一个分支指向某个tag-2"><code>git checkout -b [branch] [tag]</code>新建一个分支，指向某个tag</h4>
+</li>
+<li>
+<h4 id="git-push-remote-tag提交指定tag-2"><code>git push [remote] [tag]</code>提交指定tag</h4>
+</li>
+<li>
+<h4 id="git-push-remote-tags提交所有tag-2"><code>git push [remote] --tags</code>提交所有tag</h4>
+</li>
+<li>
+<h4 id="git-push-origin-refstagstagname删除远程tag-2"><code>git push origin :refs/tags/[tagName]</code>删除远程tag</h4>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>log</strong></p>
+<ul>
+<li>
+<h4 id="git-log显示当前分支的版本历史"><code>git log</code>显示当前分支的版本历史</h4>
+</li>
+</ul>
+<pre><code>--stat显示每次commit发生变更的文件
+--color显示不同颜色
+--graph显示树状
+--pretty=format:'%Cred%h%Creset%C(yellow)%d%Creset%s%Cgreen(%cd)%C(bold blue)&lt;%an&gt;%Creset'输出信息格式化
+• %Cred: 切换到红色
+• %Cgreen: 切换到绿色
+• %Cblue: 切换到蓝色
+• %Creset: 重设颜色
+• %C(...): 制定颜色
+• %h: 缩短的commit hash
+• %an: 作者名字
+• %ae: 作者邮箱
+• %cd: 提交日期 (--date= 制定的格式)
+• %d: ref名称(tag,分支等信息)
+--abbrev-commit显示简短的commit id
+--date=relative显示的时间，relative相对时间
+</code></pre>
+<ul>
+<li>
+<h4 id="git-log-s-keyword搜索提交历史根据关键词"><code>git log -S [keyword]</code>搜索提交历史，根据关键词</h4>
+</li>
+<li>
+<h4 id="git-log-tag-commit显示某个commit之后的所有变动"><code>git log [tag] [commit]</code>显示某个commit之后的所有变动</h4>
+</li>
+<li>
+<h4 id="git-log-follow-file显示某个文件的版本历史包括文件改名"><code>git log --follow [file]</code>显示某个文件的版本历史，包括文件改名</h4>
+</li>
+<li>
+<h4 id="git-log-p-file显示指定文件相关的每一次diff"><code>git log -p [file]</code>显示指定文件相关的每一次diff</h4>
+</li>
+<li>
+<h4 id="git-whatchanged-file显示某个文件的版本历史包括文件改名"><code>git whatchanged [file]</code>显示某个文件的版本历史，包括文件改名</h4>
+</li>
+<li>
+<h4 id="git-shortlog-sn显示所有提交过的用户按提交次数排序"><code>git shortlog -sn</code>显示所有提交过的用户，按提交次数排序</h4>
+</li>
+<li>
+<h4 id="git-blame-file显示指定文件是什么人在什么时间修改过"><code>git blame [file]</code>显示指定文件是什么人在什么时间修改过</h4>
+</li>
+<li>
+<h4 id="git-show-commit显示某次提交的元数据和内容变化"><code>git show [commit]</code>显示某次提交的元数据和内容变化</h4>
+</li>
+<li>
+<h4 id="git-show-name-only-commit显示某次提交发生变化的文件"><code>git show --name-only [commit]</code>显示某次提交发生变化的文件</h4>
+</li>
+<li>
+<h4 id="git-show-commitfilename显示某次提交时某个文件的内容"><code>git show [commit]:[filename]</code>显示某次提交时，某个文件的内容</h4>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>diff</strong></p>
+<ul>
+<li>
+<h4 id="git-difftool显示暂存区和工作区的差异"><code>git difftool</code>显示暂存区和工作区的差异</h4>
+</li>
+<li>
+<h4 id="git-difftool-cached-file显示暂存区和上一个commit的差异"><code>git difftool --cached [file]</code>显示暂存区和上一个commit的差异</h4>
+</li>
+<li>
+<h4 id="git-difftool-head显示暂存区与当前分支最新commit之间的差异"><code>git difftool HEAD</code>显示暂存区与当前分支最新commit之间的差异</h4>
+</li>
+<li>
+<h4 id="git-difftool-first-branchsecond-branch显示两个分支或提交之间的差异"><code>git difftool [first-branch]...[second-branch]</code>显示两个分支或提交之间的差异</h4>
+</li>
+<li>
+<h4 id="git-difftool-shortstat-0-day-ago显示今天你写了多少行代码"><code>git difftool --shortstat &quot;@{0 day ago}&quot;</code>显示今天你写了多少行代码</h4>
+</li>
+<li>
+<h4 id="git-diff-file将工作区的修改导出到指定文件"><code>git diff &gt;&gt; [file]</code>将工作区的修改导出到指定文件</h4>
+</li>
+<li>
+<h4 id="git-apply-file将文件中的修改应用到工作区"><code>git apply [file]</code>将文件中的修改应用到工作区</h4>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>镜囊妙计</strong></p>
+<ul>
+<li>
+<h4 id="git-reflog查看所有操作历史配合reset进行时光倒流"><code>git reflog</code>查看所有操作历史，配合reset进行时光倒流</h4>
+</li>
+</ul>
+</li>
 </ul>
 ]]></content>
     </entry>
