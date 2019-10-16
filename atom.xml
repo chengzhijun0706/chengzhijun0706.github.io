@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://chengzhijun0706.github.io/</id>
     <title>lift</title>
-    <updated>2019-10-16T09:10:16.318Z</updated>
+    <updated>2019-10-16T09:17:56.764Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://chengzhijun0706.github.io/"/>
     <link rel="self" href="https://chengzhijun0706.github.io//atom.xml"/>
@@ -67,12 +67,13 @@ exported为false，grantUriPermissions表示授予URI临时访问权限。</p>
 </li>
 <li>
 <p>指定共享目录
-上文中的android:resource=&quot;@xml/file_provider_paths&quot;指定了共享的目录，其配置如下：
-<paths xmlns:android="http://schemas.android.com/apk/res/android">
-<files-path name="my_images" path="images/"/>
-...
-</paths></p>
-<pre><code> 路径说明：
+上文中的android:resource=&quot;@xml/file_provider_paths&quot;指定了共享的目录，其配置如下：</p>
+<pre><code> &lt;paths xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;&gt;
+ 	&lt;files-path name=&quot;my_images&quot; path=&quot;images/&quot;/&gt;
+ 	...
+ &lt;/paths&gt;
+
+ 路径说明：
 
  &lt;files-path name=&quot;name&quot; path=&quot;path/&quot; /&gt;   
  &lt;!--等同于Context.getFilesDir()下面的path文件夹的所有文件--&gt; 

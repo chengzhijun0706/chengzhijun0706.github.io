@@ -4,7 +4,7 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Android版本适配 | lift</title>
-<link rel="shortcut icon" href="https://chengzhijun0706.github.io//favicon.ico?v=1571217014528">
+<link rel="shortcut icon" href="https://chengzhijun0706.github.io//favicon.ico?v=1571217474994">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://chengzhijun0706.github.io//styles/main.css">
@@ -20,7 +20,7 @@
       <div class="main-content">
         <div class="site-header">
   <a href="https://chengzhijun0706.github.io/">
-  <img class="avatar" src="https://chengzhijun0706.github.io//images/avatar.png?v=1571217014528" alt="">
+  <img class="avatar" src="https://chengzhijun0706.github.io//images/avatar.png?v=1571217474994" alt="">
   </a>
   <h1 class="site-title">
     lift
@@ -136,12 +136,13 @@ exported为false，grantUriPermissions表示授予URI临时访问权限。</p>
 </li>
 <li>
 <p>指定共享目录
-上文中的android:resource=&quot;@xml/file_provider_paths&quot;指定了共享的目录，其配置如下：
-<paths xmlns:android="http://schemas.android.com/apk/res/android">
-<files-path name="my_images" path="images/"/>
-...
-</paths></p>
-<pre><code> 路径说明：
+上文中的android:resource=&quot;@xml/file_provider_paths&quot;指定了共享的目录，其配置如下：</p>
+<pre><code> &lt;paths xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;&gt;
+ 	&lt;files-path name=&quot;my_images&quot; path=&quot;images/&quot;/&gt;
+ 	...
+ &lt;/paths&gt;
+
+ 路径说明：
 
  &lt;files-path name=&quot;name&quot; path=&quot;path/&quot; /&gt;   
  &lt;!--等同于Context.getFilesDir()下面的path文件夹的所有文件--&gt; 
