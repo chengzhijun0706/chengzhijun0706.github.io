@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://chengzhijun0706.github.io/</id>
     <title>lift</title>
-    <updated>2019-10-16T09:17:56.764Z</updated>
+    <updated>2019-10-16T09:30:49.741Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://chengzhijun0706.github.io/"/>
     <link rel="self" href="https://chengzhijun0706.github.io//atom.xml"/>
@@ -53,17 +53,18 @@
 <p>步骤如下：</p>
 <ol>
 <li>
-<p>在AndroidManiest.xml清单中注册provider
-<provider
- 		android:name="android.support.v4.content.FileProvider"
- 		android:authorities="com.demo.main.provider"
- 		android:exported="false"
- 		android:grantUriPermissions="true">
-<meta-data
- 				android:name="android.support.FILE_PROVIDER_PATHS"
- 				android:resource="@xml/file_provider_paths"/>
-</provider>
-exported为false，grantUriPermissions表示授予URI临时访问权限。</p>
+<p>在AndroidManiest.xml清单中注册provider</p>
+<pre><code> &lt;provider
+ 	android:name=&quot;android.support.v4.content.FileProvider&quot;
+ 	android:authorities=&quot;com.demo.main.provider&quot;
+ 	android:exported=&quot;false&quot;
+ 	android:grantUriPermissions=&quot;true&quot;&gt;
+ 	&lt;meta-data
+ 			android:name=&quot;android.support.FILE_PROVIDER_PATHS&quot;
+ 			android:resource=&quot;@xml/file_provider_paths&quot;/&gt;
+ &lt;/provider&gt;
+ exported为false，grantUriPermissions表示授予URI临时访问权限。
+</code></pre>
 </li>
 <li>
 <p>指定共享目录
@@ -92,27 +93,28 @@ exported为false，grantUriPermissions表示授予URI临时访问权限。</p>
 </code></pre>
 </li>
 <li>
-<p>通过FileProvider，下面是打开下载完的APK的实例
-public static Intent getOpenFileIntent(Context context, DownloadResponse downloadResponse) {
-File file = new File(downloadResponse.getParentPath(), downloadResponse.getFileName());
-if (!file.exists()) {
-return null;
-}
-Intent intent = new Intent();
-intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-intent.setAction(Intent.ACTION_VIEW);
-if (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.N) {
-intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-Uri contentUri = FileProvider.getUriForFile(context, &quot;com.demo.main.provider&quot;, file);
-intent.setDataAndType(contentUri, downloadResponse.getMimeType());
-} else {
-intent.setDataAndType(Uri.fromFile(file), downloadResponse.getMimeType());
-}
-if (!(context instanceof Activity)) {
-intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-}
-return intent;
-}</p>
+<p>通过FileProvider，下面是打开下载完的APK的实例</p>
+<pre><code> 	public static Intent getOpenFileIntent(Context context, DownloadResponse downloadResponse) {
+ 		File file = new File(downloadResponse.getParentPath(), downloadResponse.getFileName());
+ 		if (!file.exists()) {
+ 				return null;
+ 		}
+ 		Intent intent = new Intent();
+ 		intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+ 		intent.setAction(Intent.ACTION_VIEW);
+ 		if (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.N) {
+ 				intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+ 				Uri contentUri = FileProvider.getUriForFile(context, &quot;com.demo.main.provider&quot;, file);
+ 				intent.setDataAndType(contentUri, downloadResponse.getMimeType());
+ 		} else {
+ 				intent.setDataAndType(Uri.fromFile(file), downloadResponse.getMimeType());
+ 		}
+ 		if (!(context instanceof Activity)) {
+ 				intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+ 		}
+ 		return intent;
+ 	}
+</code></pre>
 </li>
 </ol>
 </li>
@@ -128,15 +130,18 @@ return intent;
 <ul>
 <li>通知渠道
 <ul>
-<li>在Android 8.0中所有的通知都需要提供通知渠道，否则，所有通知在8.0系统上都不能正常显示。
-DownloadNotifier(Context context) {
-mContext = context;
-mManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-if (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.O) {
-final NotificationChannel channel = new NotificationChannel(CHANNEL_ID,CHANNEL_NAME,NotificationManager.IMPORTANCE_HIGH);
-mManager.createNotificationChannel(channel);
-}
-}</li>
+<li>
+<p>在Android 8.0中所有的通知都需要提供通知渠道，否则，所有通知在8.0系统上都不能正常显示。</p>
+<pre><code>  DownloadNotifier(Context context) {
+  		mContext = context;
+  		mManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+  		if (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.O) {
+  				final NotificationChannel channel = new NotificationChannel(CHANNEL_ID,CHANNEL_NAME,NotificationManager.IMPORTANCE_HIGH);
+  				mManager.createNotificationChannel(channel);
+  		}
+  }
+</code></pre>
+</li>
 </ul>
 </li>
 <li>悬浮窗
@@ -155,23 +160,34 @@ mManager.createNotificationChannel(channel);
 </li>
 <li>透明窗口不允许锁定屏幕旋转
 <ul>
-<li>窗口透明 + 固定屏幕方向 会抛出下面的异常：
-Caused by: java.lang.IllegalStateException: Only fullscreen opaque activities can request orientation</li>
-<li>解决方案有两种：
+<li>
+<p>窗口透明 + 固定屏幕方向 会抛出下面的异常：</p>
+<pre><code>  Caused by: java.lang.IllegalStateException: Only fullscreen opaque activities can request orientation
+</code></pre>
+</li>
+<li>
+<p>解决方案有两种：</p>
 <ul>
 <li>适配横屏，去掉固定屏幕方向的限制。</li>
 <li>动态设置窗口透明。</li>
 </ul>
 </li>
-<li>示例
+<li>
+<p>示例</p>
 <ul>
 <li>绝大多数都是因为我们为了提高用户体验，手动取消App启动白屏或者黑屏的时候，将Splash界面设为了透明，然后这个时候又设置了方向为垂直，从而导致了这个问题。</li>
 <li>解决方法
 <ul>
-<li>找到你设置透明的Activity，然后在他的theme中将android:windowIsTranslucent改为false
-<item name="android:windowIsTranslucent">false</item></li>
-<li>再加入下面这行代码就搞定了。
-<item name="android:windowDisablePreview">true</item></li>
+<li>
+<p>找到你设置透明的Activity，然后在他的theme中将android:windowIsTranslucent改为false</p>
+<pre><code>  &lt;item name=&quot;android:windowIsTranslucent&quot;&gt;false&lt;/item&gt;
+</code></pre>
+</li>
+<li>
+<p>再加入下面这行代码就搞定了。</p>
+<pre><code>  &lt;item name=&quot;android:windowDisablePreview&quot;&gt;true&lt;/item&gt;
+</code></pre>
+</li>
 </ul>
 </li>
 </ul>
@@ -180,8 +196,11 @@ Caused by: java.lang.IllegalStateException: Only fullscreen opaque activities ca
 </li>
 <li>安装apk权限
 <ul>
-<li>在 Android 8.0 中，安装未知应用权限提高了安装未知来源应用时的安全性。此权限与其他运行时权限一样，会与应用绑定，在安装时进行提示，确保用户授予使用安装来源的权限后，此权限才会提示用户安装应用。在运行 Android 8.0 或更高版本的设备上使用此权限时，恶意下载程序将无法骗取用户安装未获得预先授权的应用，所以我们需要加入安装apk文件的权限。
-<uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" /></li>
+<li>
+<p>在 Android 8.0 中，安装未知应用权限提高了安装未知来源应用时的安全性。此权限与其他运行时权限一样，会与应用绑定，在安装时进行提示，确保用户授予使用安装来源的权限后，此权限才会提示用户安装应用。在运行 Android 8.0 或更高版本的设备上使用此权限时，恶意下载程序将无法骗取用户安装未获得预先授权的应用，所以我们需要加入安装apk文件的权限。</p>
+<pre><code>   &lt;uses-permission android:name=&quot;android.permission.REQUEST_INSTALL_PACKAGES&quot; /&gt;
+</code></pre>
+</li>
 </ul>
 </li>
 <li>后台服务限制
@@ -209,54 +228,73 @@ Caused by: java.lang.IllegalStateException: Only fullscreen opaque activities ca
 <ul>
 <li>Android 9.0限制了明文流量的网络请求，非加密的流量请求都会被系统禁止。简而言之限制HTTP请求，强制HTTPS，使用如下配置关闭限制
 <ul>
-<li>在res/xml文件夹下新建network_security_config.xml：
-<?xml version="1.0" encoding="utf-8"?>
-<network-security-config>
-<base-config cleartextTrafficPermitted="true" />
-</network-security-config></li>
-<li>在AndroidManifest.xml的application标签下进行配置：
+<li>
+<p>在res/xml文件夹下新建network_security_config.xml：</p>
+<pre><code>  &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+  &lt;network-security-config&gt;
+  		&lt;base-config cleartextTrafficPermitted=&quot;true&quot; /&gt;
+  &lt;/network-security-config&gt;
+</code></pre>
+</li>
+<li>
+<p>在AndroidManifest.xml的application标签下进行配置：
 <application
   		android:networkSecurityConfig="@xml/network_security_config">
-</application></li>
+</application></p>
+</li>
 </ul>
 </li>
 </ul>
 </li>
 <li>Apache HTTP客户端弃用（org.apache.http包下类找不到）
 <ul>
-<li>在 Android 6.0 中，谷歌取消了对 Apache HTTP 客户端的支持。 从 Android 9 开始，默认情况下该内容库已从 bootclasspath 中移除且不可用于应用。</li>
-<li>9.0下使用org.apache.http包下类会抛如下异常：
-java.lang.NoClassDefFoundError: Failed resolution of: Lorg/apache/http/...</li>
-<li>解决方案
+<li>
+<p>在 Android 6.0 中，谷歌取消了对 Apache HTTP 客户端的支持。 从 Android 9 开始，默认情况下该内容库已从 bootclasspath 中移除且不可用于应用。</p>
+</li>
+<li>
+<p>9.0下使用org.apache.http包下类会抛如下异常：</p>
+<p>java.lang.NoClassDefFoundError: Failed resolution of: Lorg/apache/http/...</p>
+</li>
+<li>
+<p>解决方案</p>
 <ul>
-<li>在AndroidManifest.xml的application标签下进行配置：
-<uses-library
-  		android:name="org.apache.http.legacy"
-  		android:required="false" /></li>
+<li>
+<p>在AndroidManifest.xml的application标签下进行配置：</p>
+<pre><code>  &lt;uses-library
+  	android:name=&quot;org.apache.http.legacy&quot;
+  	android:required=&quot;false&quot; /&gt;
+</code></pre>
+</li>
 </ul>
 </li>
 </ul>
 </li>
 <li>webview数据目录变更
 <ul>
-<li>如果在api设置为28后，多进程使用同一个目录webView则会抛出异常：
-Caused by: java.lang.RuntimeException: Using WebView from more than one process at once with the same data directory is not supported.</li>
-<li>解决方案：为不同的进程设置不同的webview数据目录
-if (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.P) {
-String processName = getProcessName(this);
-if (!&quot;com.xx.xxx&quot;.equals(processName)){//判断不等于默认进程名称
-WebView.setDataDirectorySuffix(processName);}
-}
-public  String getProcessName(Context context) {
-if (context == null) return null;
-ActivityManager manager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
-for (ActivityManager.RunningAppProcessInfo processInfo : manager.getRunningAppProcesses()) {
-if (processInfo.pid == android.os.Process.myPid()) {
-return processInfo.processName;
-}
-}
-return null;
-}</li>
+<li>
+<p>如果在api设置为28后，多进程使用同一个目录webView则会抛出异常：</p>
+<pre><code>  Caused by: java.lang.RuntimeException: Using WebView from more than one process at once with the same data directory is not supported. 
+</code></pre>
+</li>
+<li>
+<p>解决方案：为不同的进程设置不同的webview数据目录</p>
+<pre><code>  if (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.P) {
+  	String processName = getProcessName(this);
+  	if (!&quot;com.xx.xxx&quot;.equals(processName)){//判断不等于默认进程名称
+  		WebView.setDataDirectorySuffix(processName);}
+  }
+  public  String getProcessName(Context context) {
+  		if (context == null) return null;
+  			ActivityManager manager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+  			for (ActivityManager.RunningAppProcessInfo processInfo : manager.getRunningAppProcesses()) {
+  				if (processInfo.pid == android.os.Process.myPid()) {
+  						return processInfo.processName;
+  				}
+  		}
+  		return null;
+  }
+</code></pre>
+</li>
 </ul>
 </li>
 <li>非sdk接口管控
